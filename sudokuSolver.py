@@ -28,7 +28,13 @@ def print_board(board):
             if j == 8:
                 print(board[i][j])
             else:
-                print(str(board[i][j]) + " ", end="")
-                
-print_board(board)
-print_board(board)             
+            
+#finds the next empty square on the board and returns its postion on the board            
+def find_empty(board):
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] == 0:
+                return (i, j) #returns row, column 
+    
+
+           
