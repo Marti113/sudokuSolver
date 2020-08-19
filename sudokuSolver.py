@@ -11,6 +11,29 @@ board = [
     [1,2,0,0,0,7,4,0,0],
     [0,4,9,2,0,6,0,0,7]
 ]
+#recursive function, base case is a full board
+def solve(board):
+
+    find = find_empty(board)
+    if not find:
+        return True #board is full 
+    else:
+        row, col = find #returns next empty element on board
+        
+    for i in range(1,10):
+        if valid(board, i, (row, col)):
+            #if valid, add number to the board at valid pos
+            board[row][col] = i
+            
+            #recursive call to board with newly added number
+            if solve(board):
+                return True:
+            
+            #if solve(board) with new number is not valid, this line of code
+            #backtracks re-assigning the new number to 0
+            board[row][col] = 0
+            
+    return False        
 
 #check if board is valid
 #ex pos 4, 3
@@ -69,6 +92,7 @@ def find_empty(board):
         for j in range(len(board[i])):
             if board[i][j] == 0:
                 return (i, j) #returns row, column
+    return None           
 
                 
     
