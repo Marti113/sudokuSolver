@@ -11,6 +11,20 @@ board = [
     [1,2,0,0,0,7,4,0,0],
     [0,4,9,2,0,6,0,0,7]
 ]
+
+board2 = [
+    [5,3,0, 0,7,0, 0,0,0],
+    [6,0,0, 1,9,5, 0,0,0],
+    [0,9,8, 0,0,0, 0,6,0],
+    
+    [8,0,0, 0,6,0, 0,0,3],
+    [4,0,0, 8,0,3, 0,0,1],
+    [7,0,0, 0,2,0, 0,0,6],
+    
+    [0,6,0, 0,0,0, 2,8,0],
+    [0,0,0, 4,1,9, 0,0,5],
+    [0,0,0, 0,8,0, 0,7,9],
+]
 #recursive function, base case is a full board
 def solve(board):
 
@@ -27,7 +41,7 @@ def solve(board):
             
             #recursive call to board with newly added number
             if solve(board):
-                return True:
+                return True
             
             #if solve(board) with new number is not valid, this line of code
             #backtracks re-assigning the new number to 0
@@ -46,12 +60,12 @@ def valid(board, num, pos):
     #check row 0-8
     for i in range(len(board[0])):
         if board[row][i] == num and col != i:
-        return False
+            return False
     
     #check column 0-8
     for i in range(len(board)):
         if board[i][col] == num and row != i:
-        return False
+            return False
 
     #check box
     #ex. box_row = 3
@@ -62,7 +76,7 @@ def valid(board, num, pos):
     for i in range(box_row * 3, box_row * 3 + 3): #ex range(3, 6)
         for j in range(box_col * 3, box_col * 3 + 3): #ex range(0, 3)
             #loops through each element in the box looking for a duplicate number
-            if (board[i][j] == num and (i, j) != pos:
+            if board[i][j] == num and (i, j) != pos:
                 return False
                 
     #if the pos makes it to the end, it is a valid position
@@ -85,6 +99,7 @@ def print_board(board):
             if j == 8:
                 print(board[i][j])
             else:
+                print(str(board[i][j]) + " ", end="")
             
 #finds the next empty square on the board and returns its postion on the board            
 def find_empty(board):
@@ -92,9 +107,14 @@ def find_empty(board):
         for j in range(len(board[i])):
             if board[i][j] == 0:
                 return (i, j) #returns row, column
+                
     return None           
 
-                
+             
+print_board(board2)
+solve(board2)
+print()
+print_board(board2)
     
 
            
